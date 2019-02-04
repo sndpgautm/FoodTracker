@@ -29,6 +29,17 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
         // Handle the text field's user input through delegate callbacks.
         nameTextField.delegate = self
         
+        
+        // Set up views if editing an existing meal
+        if let meal = meal {
+            navigationItem.title = meal.name
+            nameTextField.text = meal.name
+            photoImageView.image = meal.photo
+            ratingControl.rating = meal.rating
+        }
+        
+        
+        
         // Enable the save button only if the text field has a valid Meal name.
         updateSaveButtonState()
     }
@@ -73,8 +84,26 @@ class MealViewController: UIViewController, UITextFieldDelegate, UIImagePickerCo
     
     //MARK: Navigation
     @IBAction func cancel(_ sender: UIBarButtonItem) {
-        //The dismiss method dismisses the modal scene and animates the transiton back to the previous scene(in this case, the meal list). The app doesnot store any data when the meal detail scene is dismissed, and neither the perpare(for:sender:) method nor the unwind action method are called
-        dismiss(animated: true, completion: nil)
+        
+        // Dependig  on the style of presentation (modal or push presentation), the view controller needs to be dismissed in two different ways.
+        
+        //This code creates a Boolean value that indicates whether the view controller that presented this scene is of type UINavigationController. As the constant name isPresentingInAddMealMode indicates, this means that the meal detail scene is presented by the user tapping the Add button
+        let isPresentingInAddMealMode = presentingViewController is UINavigationController
+        
+        if isPresentingInAddMealMode {
+            //The dismiss method dismisses the modal scene and animates the transiton back to the previous scene(in this case, the meal list). The app doesnot store any data when the meal detail scene is dismissed, and neither the perpare(for:sender:) method nor the unwind action method are called
+            dismiss(animated: true, completion: nil)
+        } else if let owningNavigationController = navigationController{
+            // The else block is called if the user is editing an existing meal. This also means that the meal detail scene was pushed onto a navigation stack when the user selected a meal from the meal list. The else statement uses an if let statement to safely unwrap the view controller’s navigationController property. If the view controller has been pushed onto a navigation stack, this property contains a reference to the stack’s navigation controller.
+            
+            //The code within the else clause executes a method called popViewController(animated:), which pops the current view controller (the meal detail scene) off the navigation stack and animates the transition. This dismisses the meal detail scene, and returns the user to the meal list.
+            owningNavigationController.popViewController(animated: true)
+            
+        } else {
+            fatalError("The MealViewController is not inside a navigation controller.")
+        }
+        
+        
     }
     
     //This method lets you configure a view controller before it's presented.

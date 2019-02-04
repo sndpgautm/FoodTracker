@@ -47,6 +47,7 @@
                                     <outlet property="nameLabel" destination="Yu2-tG-PWH" id="O5j-Lp-6nO"/>
                                     <outlet property="photoImageView" destination="Drb-Ei-zcW" id="QpE-qm-wHf"/>
                                     <outlet property="ratingControl" destination="Elb-2K-BEP" id="8WB-dZ-ehB"/>
+                                    <segue destination="BYZ-38-t0r" kind="show" identifier="ShowDetail" id="1HU-n6-fd5"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -65,7 +66,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QOJ-ZW-oUA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259" y="-6"/>
+            <point key="canvasLocation" x="254" y="-70"/>
         </scene>
         <!--New Meal-->
         <scene sceneID="tne-QT-ifu">
@@ -138,7 +139,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2176.8115942028985" y="56.919642857142854"/>
+            <point key="canvasLocation" x="1964" y="-70"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="uUv-yY-ogn">
@@ -156,7 +157,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A49-X1-4fm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-736.23188405797111" y="41.517857142857139"/>
+            <point key="canvasLocation" x="-528" y="-69"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="cMZ-v5-Tpb">
@@ -174,10 +175,13 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pKW-ao-P0J" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1266.6666666666667" y="56.919642857142854"/>
+            <point key="canvasLocation" x="1141" y="288"/>
         </scene>
     </scenes>
     <resources>
         <image name="defaultPhoto" width="1080" height="1080"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="1HU-n6-fd5"/>
+    </inferredMetricsTieBreakers>
 </document>
